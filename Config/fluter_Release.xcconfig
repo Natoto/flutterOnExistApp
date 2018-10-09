@@ -1,0 +1,4 @@
+#include "../Flutter/Flutter.xcconfig"
+#include "../Pods/Target Support Files/Pods-flutterOnExistApp/Pods-flutterOnExistApp.release.xcconfig"
+
+FLUTTER_BUILD_MODE=release
