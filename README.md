@@ -1,21 +1,17 @@
-# flutterOnExistApp
-flutter添加到iOS主工程例子 & 插件化方案见另一个分支multiflutter
+# 插件化方案个分支multiflutter
 
-0.9.4 有更新
+流程
 
-Flutter目录里面的App.framework和Flutter.framework指向的是  
+1. 在现有iOS工程基础上添加flutter
 
-Flutter/App.framework  ----->  `myflutter/.ios/Flutter/App.framework`
+2. 将编译产物Flutter.framework.zip至于工程Resource目录下
 
-Flutter/Flutter.framework  ----->  `myflutter/.ios/Flutter/engine/App.framework`
+3. 在执行build脚本之后，添加自己的脚本，将Flutter.framework.zip解压出来，并替换掉之前编译的产物Flutter.framework
+
+4. 结束
 
 
-Flutter/flutter_assets  ----->  `myflutter/.ios/Flutter/flutter_assets`
+---
+为什么要替换Flutter.framework
 
-另外移除了podfile里面的
-```
-    #flutter_application_path = 'myflutter'
-    #eval(File.read("#{flutter_application_path}/.ios/Flutter/podhelper.rb"))
-```
-
-将`GeneratedPluginRegistrant.h` `GeneratedPluginRegistrant.m` 拷贝到futter目录并引入工程
+0.9.4版本存在内存泄漏问题，并且不支持动态化方案，不支持下发脚本代码
