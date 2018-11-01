@@ -6,6 +6,7 @@ environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
 
 dependencies:
+  package_info:
   flutter:
     sdk: flutter
 
@@ -16,6 +17,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  application:
+  module:
     androidPackage: com.example.myflutter
     iosBundleIdentifier: com.example.myflutter
