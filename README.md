@@ -1,4 +1,4 @@
-# 插件化方案个分支multiflutter
+# 插件化方案 multiflutter
 
 流程
 
