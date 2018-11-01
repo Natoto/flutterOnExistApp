@@ -1,5 +1,5 @@
 # flutterOnExistApp
-flutter添加到iOS主工程例子
+flutter添加到iOS主工程例子 & 插件化方案见另一个分支
 
 0.9.4 有更新
 
