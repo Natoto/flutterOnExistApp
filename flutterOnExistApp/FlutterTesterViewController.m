@@ -126,7 +126,7 @@
 -(void)buttonTap:(id)sender{
 //    [self.navigationController popViewControllerAnimated:YES];
     [self.ctr dismissViewControllerAnimated:YES completion:nil];
-//    [self.ctr clearChannels];
+    [self.ctr clearChannels];
 }
 
 - (void)didReceiveMemoryWarning {
