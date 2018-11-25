@@ -29,6 +29,7 @@
 		F8E2DA19219070B00008BF33 /* BeeActiveObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E2DA0D219070B00008BF33 /* BeeActiveObject.m */; };
 		F8E2DA1A219070B00008BF33 /* HBActiveObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E2DA13219070B00008BF33 /* HBActiveObject.m */; };
 		F8E2DA1B219070B00008BF33 /* SMDHttpEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E2DA15219070B00008BF33 /* SMDHttpEngine.m */; };
+		F8E2DA1E21907F200008BF33 /* PackageInfoPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E2DA1C21907F200008BF33 /* PackageInfoPlugin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,6 +81,8 @@
 		F8E2DA14219070B00008BF33 /* SMDHttpEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDHttpEngine.h; sourceTree = "<group>"; };
 		F8E2DA15219070B00008BF33 /* SMDHttpEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMDHttpEngine.m; sourceTree = "<group>"; };
 		F8E2DA16219070B00008BF33 /* SMDNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDNetWork.h; sourceTree = "<group>"; };
+		F8E2DA1C21907F200008BF33 /* PackageInfoPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageInfoPlugin.m; sourceTree = "<group>"; };
+		F8E2DA1D21907F200008BF33 /* PackageInfoPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageInfoPlugin.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +170,8 @@
 				F8D10E4A216C5B0300D09E2D /* Flutter.xcconfig */,
 				F8B881BE218B21B500AB478B /* GeneratedPluginRegistrant.h */,
 				F8B881BD218B21B500AB478B /* GeneratedPluginRegistrant.m */,
+				F8E2DA1D21907F200008BF33 /* PackageInfoPlugin.h */,
+				F8E2DA1C21907F200008BF33 /* PackageInfoPlugin.m */,
 				F8B881C0218B21E000AB478B /* flutter_assets */,
 			);
 			path = Flutter;
@@ -208,6 +213,7 @@
 			buildPhases = (
 				F8D10E3E216C570900D09E2D /* ShellScript */,
 				F8B881D8218B24CB00AB478B /* R.replace.engine */,
+				F8E2DA1F219085150008BF33 /* R.replace.engine.from.debug_ios */,
 				9B2AD7111B5DC1B27435F9BC /* [CP] Check Pods Manifest.lock */,
 				F8D10E21216C4E1E00D09E2D /* Sources */,
 				F8D10E22216C4E1E00D09E2D /* Frameworks */,
@@ -303,7 +309,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"${SRCROOT}/flutterOnExistApp/Resources/\"\n\nunzip Flutter.framework.zip\n\ncp -rf \"${SRCROOT}/flutterOnExistApp/Resources/Flutter.framework\" \"${SRCROOT}/myflutter/.ios/Flutter/engine\"";
+			shellScript = "#cd \"${SRCROOT}/flutterOnExistApp/Resources/\"\n\n#unzip Flutter.framework.zip\n\n#cp -rf \"${SRCROOT}/flutterOnExistApp/Resources/Flutter.framework\" \"${SRCROOT}/myflutter/.ios/Flutter/engine\"";
 		};
 		F8D10E3E216C570900D09E2D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -318,6 +324,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n";
 		};
+		F8E2DA1F219085150008BF33 /* R.replace.engine.from.debug_ios */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = R.replace.engine.from.debug_ios;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp -rf \"/Users/boo/Documents/engine/src/out/ios_debug_unopt/Flutter.framework\" \"${SRCROOT}/myflutter/.ios/Flutter/engine\"";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -329,6 +349,7 @@
 				F8E2DA18219070B00008BF33 /* Base_Resp.m in Sources */,
 				F8B881C4218B245A00AB478B /* FlutterTesterViewController.m in Sources */,
 				F8E2DA17219070B00008BF33 /* Base_Req.m in Sources */,
+				F8E2DA1E21907F200008BF33 /* PackageInfoPlugin.m in Sources */,
 				F8E2DA19219070B00008BF33 /* BeeActiveObject.m in Sources */,
 				F8D10E2D216C4E1F00D09E2D /* ViewController.m in Sources */,
 				F8E2DA1B219070B00008BF33 /* SMDHttpEngine.m in Sources */,
