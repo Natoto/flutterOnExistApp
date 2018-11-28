@@ -1,4 +1,6 @@
-# flutterOnExistApp
+# flutterOnExistApp 现有工程中添加flutter
+# 改造官方flutter engine，实现插件化，见multflutter分支 https://github.com/Natoto/flutterOnExistApp/tree/multiflutter 
+
 flutter添加到iOS主工程例子
 
 0.9.4 有更新
