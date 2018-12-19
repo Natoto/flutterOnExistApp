@@ -15,6 +15,7 @@
 //#import <FLEX/FLEX.h>
 @interface FlutterTesterViewController ()
 @property (nonatomic, weak) FlutterViewController * ctr;
+@property (nonatomic, weak) FlutterEngine * engine;
 @end
 
 @implementation FlutterTesterViewController
@@ -36,7 +37,7 @@
 
 -(void)handleNetWorkResource:(UIButton *)button{
 
-    //https://file.io/L6Ogcg
+  /*  //https://file.io/L6Ogcg
     button.enabled = NO;
     __weak __typeof(self)weakSelf = self;
     void (^unzipCompleteBlock)(NSString * tempZipDir) = ^(NSString *tempZipDir) {
@@ -59,7 +60,7 @@
         button.enabled = YES;
         unzipCompleteBlock(localpath);
     }];
-  
+  */
 }
 
 /** 
@@ -67,11 +68,21 @@
 */
 - (void)handleBoundleResource {
     
-//    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * path = [[NSBundle mainBundle] pathForResource:@"flutter_assets" ofType:@""];// [[paths objectAtIndex:0] stringByAppendingPathComponent:@"flutter_assets_2"] ;
+/*    NSString * path = [[NSBundle mainBundle] pathForResource:@"flutter_assets" ofType:@""];
     NSURL * url = [NSURL URLWithString:path];
     FlutterDartProject * dart = [[FlutterDartProject alloc] initWithFlutterAssets:url dartMain:nil packages:nil];
-    FlutterViewController* flutterViewController = [[FlutterViewController alloc] initWithProject:dart nibName:nil bundle:nil];
+    FlutterViewController* flutterViewController = [[FlutterViewController alloc] initWithProject:dart nibName:nil bundle:nil];*/
+ 
+    NSString * path = [[NSBundle mainBundle] pathForResource:@"flutter_assets" ofType:@""];
+    NSURL * url = [NSURL URLWithString:path];
+    FlutterDartProject * dart = [[FlutterDartProject alloc] init];
+    if (!self.engine) {
+        FlutterEngine * engine = [[FlutterEngine alloc] initWithName:path.lastPathComponent project:dart];
+        [engine runWithEntrypoint:nil];
+        self.engine = engine;
+    }
+    FlutterViewController* flutterViewController = [[FlutterViewController alloc] initWithEngine:self.engine nibName:nil bundle:nil];
+    
     [GeneratedPluginRegistrant registerWithRegistry:flutterViewController];
     
     [self addBackButton:flutterViewController];
@@ -83,20 +94,22 @@
 }
 
 - (void)handleDocumentButtonAction:(UIButton *)button {
-    
-    NSString * url =  @"http://phe7wo0ui.bkt.clouddn.com/flutter_assets_grallery.zip";
 
+    
+    NSString * url = @"https://static.moschat.com/mobilePlugin/mobilePlugin_1545200622670.zip";
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * path = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"flutter_assets_download/flutter_assets_grallery.zip/flutter_assets"] ;
+    NSString * path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"flutter_assets_download/%@/flutter_assets",url.lastPathComponent]] ;
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        
         NSURL * url = [NSURL fileURLWithPath:path];
-        FlutterDartProject * dart = [[FlutterDartProject alloc] initWithFlutterAssets:url dartMain:nil packages:nil];
+       FlutterDartProject * dart =  [[FlutterDartProject alloc] initWithFlutterAssets:url dartMain:nil packages:nil];
         FlutterViewController* flutterViewController = [[FlutterViewController alloc] initWithProject:dart nibName:nil bundle:nil];
+        self.engine = [flutterViewController getEngine];
         [GeneratedPluginRegistrant registerWithRegistry:flutterViewController];
 
         [self addBackButton:flutterViewController];
      
-         [flutterViewController setInitialRoute:@"route1"];
+         [flutterViewController setInitialRoute:@"score_query/detail"];
         [self presentViewController:flutterViewController animated:YES completion:nil];
     }
     else{
@@ -125,8 +138,17 @@
 
 -(void)buttonTap:(id)sender{
 //    [self.navigationController popViewControllerAnimated:YES];
-    [self.ctr dismissViewControllerAnimated:YES completion:nil];
-    [self.ctr performSelector:@selector(clearChannels) withObject:nil afterDelay:0];
+    
+    __weak __typeof(self)weakSelf = self;
+    [self.ctr dismissViewControllerAnimated:YES completion:^{
+        
+        [weakSelf.engine clearChannels];
+        weakSelf.engine = nil;
+//        if ([weakSelf.ctr canPerformAction:@selector(clearChannels) withSender:nil]) {
+  //              [weakSelf.ctr performSelector:@selector(clearChannels) withObject:nil afterDelay:0];
+    //    }
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning {

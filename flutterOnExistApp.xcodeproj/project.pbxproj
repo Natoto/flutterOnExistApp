@@ -211,10 +211,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8D10E3B216C4E2000D09E2D /* Build configuration list for PBXNativeTarget "flutterOnExistApp" */;
 			buildPhases = (
+				9B2AD7111B5DC1B27435F9BC /* [CP] Check Pods Manifest.lock */,
 				F8D10E3E216C570900D09E2D /* ShellScript */,
 				F8B881D8218B24CB00AB478B /* R.replace.engine */,
 				F8E2DA1F219085150008BF33 /* R.replace.engine.from.debug_ios */,
-				9B2AD7111B5DC1B27435F9BC /* [CP] Check Pods Manifest.lock */,
 				F8D10E21216C4E1E00D09E2D /* Sources */,
 				F8D10E22216C4E1E00D09E2D /* Frameworks */,
 				F8D10E23216C4E1E00D09E2D /* Resources */,
@@ -309,7 +309,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#cd \"${SRCROOT}/flutterOnExistApp/Resources/\"\n\n#unzip Flutter.framework.zip\n\n#cp -rf \"${SRCROOT}/flutterOnExistApp/Resources/Flutter.framework\" \"${SRCROOT}/myflutter/.ios/Flutter/engine\"";
+			shellScript = "#cd \"${SRCROOT}/flutterOnExistApp/Resources/\"\n\n#unzip Flutter.framework.zip\n\n#cp -rf \"${SRCROOT}/flutterOnExistApp/Resources/Flutter.framework\" \"${SRCROOT}/myflutter/.ios/Flutter/engine\"\n";
 		};
 		F8D10E3E216C570900D09E2D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -336,7 +336,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -rf \"/Users/boo/Documents/engine/src/out/ios_debug_unopt/Flutter.framework\" \"${SRCROOT}/myflutter/.ios/Flutter/engine\"";
+			shellScript = "cp -rf \"/Users/boo/Documents/engine/src/out/ios_debug_unopt/Flutter.framework\" \"${SRCROOT}/myflutter/.ios/Flutter/engine\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
