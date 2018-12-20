@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "flutter/shell/platform/darwin/ios/framework/Headers/FlutterChannels.h"
-
+#import <objc/runtime.h>
 
 #ifndef    weakify
 #if __has_feature(objc_arc)
@@ -186,6 +186,7 @@
     NSLog(@"%@ %@ %s",self,NSStringFromClass(self.class),__FUNCTION__);
     [self destory];
     [super dealloc];
+    self = nil;
 }
 
 - (void)destory {
@@ -221,6 +222,7 @@ NSObject const* FlutterMethodNotImplemented = [NSObject new];
     NSObject<FlutterBinaryMessenger>* _messenger;
     NSString* _name;
     NSObject<FlutterMethodCodec>* _codec;
+    
 }
 
 + (instancetype)methodChannelWithName:(NSString*)name
@@ -232,8 +234,7 @@ NSObject const* FlutterMethodNotImplemented = [NSObject new];
 + (instancetype)methodChannelWithName:(NSString*)name
                       binaryMessenger:(NSObject<FlutterBinaryMessenger>*)messenger
                                 codec:(NSObject<FlutterMethodCodec>*)codec {
-    return [[[FlutterMethodChannel alloc] initWithName:name binaryMessenger:messenger codec:codec]
-            autorelease];
+    return [[FlutterMethodChannel alloc] initWithName:name binaryMessenger:messenger codec:codec] ;
 }
 
 - (instancetype)initWithName:(NSString*)name
@@ -242,13 +243,14 @@ NSObject const* FlutterMethodNotImplemented = [NSObject new];
     self = [super init];
     NSAssert(self, @"Super init cannot be nil");
     _name = [name retain];
-    _messenger = [messenger retain];
+    _messenger = messenger;// [messenger retain];
     _codec = [codec retain];
     return self;
 }
 
 
 - (void)dealloc {
+    NSLog(@"%@ %s",self,__FUNCTION__);
     [self destory];
     [super dealloc];
 }
@@ -258,12 +260,15 @@ NSObject const* FlutterMethodNotImplemented = [NSObject new];
         return;
     }
     NSLog(@"%@ %s",self,__FUNCTION__);
+    if (_messenger) {
+        [_messenger setMessageHandlerOnChannel:_name binaryMessageHandler:nil];
+    }
     if (_name) {
         [_name release];
         _name = nil;
     }
     if (_messenger) {
-        [_messenger release];
+//        [_messenger release];
         _messenger = nil;
     }
     if (_codec) {
@@ -301,38 +306,45 @@ NSObject const* FlutterMethodNotImplemented = [NSObject new];
     [_messenger sendOnChannel:_name message:message binaryReply:reply];
 }
 
-
+-(void)flutterBinaryMessageHandler:(FlutterMethodCallHandler)handler message:(NSData* )message callback:(FlutterBinaryReply)callback{
+    
+    if (![self isKindOfClass:[FlutterMethodChannel class]]) {
+        return ;
+    }
+    NSLog(@"method callback: %@",self);
+    FlutterMethodCall* call = [[self getCodec] decodeMethodCall:message];
+    @weakify(self)
+    handler(call, ^(id result) {
+        @strongify(self);
+        if (result == FlutterMethodNotImplemented)
+            callback(nil);
+        else if ([result isKindOfClass:[FlutterError class]])
+            callback([[self getCodec] encodeErrorEnvelope:(FlutterError*)result]);
+        else
+            callback([[self getCodec] encodeSuccessEnvelope:result]);
+    });
+}
 - (void)setMethodCallHandler:(FlutterMethodCallHandler)handler {
     if (!handler) {
         [_messenger setMessageHandlerOnChannel:_name binaryMessageHandler:nil];
         return;
     }
-    //    __block FlutterMethodChannel *blockSelf = self;
-    
     NSLog(@"set method: %@",self);
     @weakify(self)
     FlutterBinaryMessageHandler messageHandler = ^(NSData* message, FlutterBinaryReply callback) {
         @strongify(self);
-        //        FlutterMethodChannel *blockSelf = self;
-        NSLog(@"method callback: %@",self);
-        if (![self isKindOfClass:[FlutterMethodChannel class]]) {
+
+        Class  cls = object_getClass(self);
+        if (![cls isSubclassOfClass:FlutterMethodChannel.class]) {
             return ;
         }
-        FlutterMethodCall* call = [[self getCodec] decodeMethodCall:message];
-        handler(call, ^(id result) {
-            @strongify(self);
-            if (result == FlutterMethodNotImplemented)
-                callback(nil);
-            else if ([result isKindOfClass:[FlutterError class]])
-                callback([[self getCodec] encodeErrorEnvelope:(FlutterError*)result]);
-            else
-                callback([[self getCodec] encodeSuccessEnvelope:result]);
-        });
+        [self flutterBinaryMessageHandler:handler message:message callback:callback];
     };
     [_messenger setMessageHandlerOnChannel:_name binaryMessageHandler:messageHandler];
 }
 
 @end
+
 
 #pragma mark - Event channel
 
@@ -373,6 +385,7 @@ NSObject const* FlutterEndOfEventStream = [NSObject new];
 }
 
 - (void)destory {
+    
     if (_name) {
         [_name release];
         _name = nil;

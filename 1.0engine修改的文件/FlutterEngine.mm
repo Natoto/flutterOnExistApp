@@ -31,7 +31,7 @@
 // FlutterEngineRegistrar to implement a FlutterPluginRegistrar.
 
 @property(nonatomic, readonly) NSMutableDictionary* pluginPublications;
-@property(nonatomic, retain) NSMutableDictionary* regplugins;
+//@property(nonatomic, retain) NSMutableDictionary* regplugins;
 
 - (fml::WeakPtr<FlutterEngine>)getWeakPtr;
 @end
@@ -98,9 +98,9 @@
 //        [_pluginPublications release];
 //    }
 //    [self clearChannels];
-    if (_regplugins) {
-        [_regplugins release];
-    }
+//    if (_regplugins) {
+//        [_regplugins release];
+//    }
     NSLog(@"%s",__FUNCTION__);
    [super dealloc];
 
@@ -205,7 +205,7 @@
 //    [_settingsChannel.get() release];
 //    [[self platformViewsController] release];
 //    [[self platformPlugin] release];
-     
+    
     //FlutterMethodChannel
     FlutterMethodChannel *obj = (FlutterMethodChannel*)_localizationChannel.get();
     [obj destory];
@@ -229,14 +229,14 @@
     FlutterBasicMessageChannel *m2 = (FlutterBasicMessageChannel*)_settingsChannel.get();
     [m2 destory];
     
-    if (_regplugins) {
-        [_regplugins enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, FlutterEngineRegistrar * obj, BOOL * _Nonnull stop) {
-            if(obj) { [obj destory]; [obj release];  obj = nil; }
-        }];
-        [_regplugins removeAllObjects];
-        [_regplugins  release];
-        _regplugins = nil;
-    }
+//    if (_regplugins) {
+//        [_regplugins enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, FlutterEngineRegistrar * obj, BOOL * _Nonnull stop) {
+//            if(obj) { [obj destory]; [obj release];  obj = nil; }
+//        }];
+//        [_regplugins removeAllObjects];
+//        [_regplugins  release];
+//        _regplugins = nil;
+//    }
     if (self.pluginPublications.count) {
         [self.pluginPublications enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             
@@ -245,7 +245,6 @@
         }];
         [self.pluginPublications removeAllObjects];
     }
-
 }
 - (void)setupChannels {
   _localizationChannel.reset([[FlutterMethodChannel alloc]
@@ -575,12 +574,12 @@
   self.pluginPublications[pluginKey] = [NSNull null];
 //  return [[FlutterEngineRegistrar alloc] initWithPlugin:pluginKey flutterEngine:self];
     FlutterEngineRegistrar * reg =  [[FlutterEngineRegistrar alloc] initWithPlugin:pluginKey flutterEngine:self];
-    if (!_regplugins) {
-        _regplugins = [NSMutableDictionary new];
-    }
-    NSLog(@"registrarForPlugin: %@",reg);
-    NSString * key2 = [NSString stringWithFormat:@"%@_regobj",pluginKey];
-    _regplugins[key2] = reg;
+//    if (!_regplugins) {
+//        _regplugins = [NSMutableDictionary new];
+//    }
+//    NSLog(@"registrarForPlugin: %@",reg);
+//    NSString * key2 = [NSString stringWithFormat:@"%@_regobj",pluginKey];
+//    _regplugins[key2] = reg;
     return  reg;
 }
 
@@ -598,7 +597,6 @@
   
     NSString* _pluginKey;
     FlutterEngine * _flutterEngine;
-
 }
 
 - (instancetype)initWithPlugin:(NSString*)pluginKey flutterEngine:(FlutterEngine*)flutterEngine {
@@ -613,7 +611,7 @@
 -(void)destory{
     
     if(_pluginKey) { [_pluginKey release]; _pluginKey = nil; }
-//    if(_flutterEngine) { [_flutterEngine release]; _flutterEngine = nil;}
+ 
 }
 - (void)dealloc {
     
@@ -637,6 +635,8 @@
 
 - (void)addMethodCallDelegate:(NSObject<FlutterPlugin>*)delegate
                       channel:(FlutterMethodChannel*)channel {
+    
+    
   [channel setMethodCallHandler:^(FlutterMethodCall* call, FlutterResult result) {
     [delegate handleMethodCall:call result:result];
   }];

@@ -429,12 +429,10 @@
 
 - (void)clearChannels { 
 //    [_engine.get() clearChannels];
-//    [_engine.get() autorelease];
 }
 
 - (void)dealloc {
-
-  [_engine.get() release];
+ 
   NSLog(@"%s",__FUNCTION__);
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   [super dealloc];

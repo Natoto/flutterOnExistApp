@@ -68,11 +68,6 @@
 */
 - (void)handleBoundleResource {
     
-/*    NSString * path = [[NSBundle mainBundle] pathForResource:@"flutter_assets" ofType:@""];
-    NSURL * url = [NSURL URLWithString:path];
-    FlutterDartProject * dart = [[FlutterDartProject alloc] initWithFlutterAssets:url dartMain:nil packages:nil];
-    FlutterViewController* flutterViewController = [[FlutterViewController alloc] initWithProject:dart nibName:nil bundle:nil];*/
- 
     NSString * path = [[NSBundle mainBundle] pathForResource:@"flutter_assets" ofType:@""];
     NSURL * url = [NSURL URLWithString:path];
     FlutterDartProject * dart = [[FlutterDartProject alloc] init];
@@ -86,8 +81,7 @@
     [GeneratedPluginRegistrant registerWithRegistry:flutterViewController];
     
     [self addBackButton:flutterViewController];
-
-//    [self.navigationController pushViewController:flutterViewController animated:YES];
+ 
      [flutterViewController setInitialRoute:@"route1"];
     [self presentViewController:flutterViewController animated:YES completion:nil];
     
