@@ -309,7 +309,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#cd \"${SRCROOT}/flutterOnExistApp/Resources/\"\n\n#unzip Flutter.framework.zip\n\n#cp -rf \"${SRCROOT}/flutterOnExistApp/Resources/Flutter.framework\" \"${SRCROOT}/myflutter/.ios/Flutter/engine\"\n";
+			shellScript = "cd \"${SRCROOT}/flutterOnExistApp/Resources/\"\n  \nunzip -u Flutter.framework.zip\n\ncp -rf \"${SRCROOT}/flutterOnExistApp/Resources/Flutter.framework\" \"${SRCROOT}/myflutter/.ios/Flutter/engine\"\n\n#cp -rf \"${SRCROOT}/flutterOnExistApp/Resources/Flutter.framework\" \"${SRCROOT}/myflutter/.ios/Flutter/engine\"\n";
 		};
 		F8D10E3E216C570900D09E2D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

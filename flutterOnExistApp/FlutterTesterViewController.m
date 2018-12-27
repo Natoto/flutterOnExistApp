@@ -77,18 +77,14 @@
         self.engine = engine;
     }
     FlutterViewController* flutterViewController = [[FlutterViewController alloc] initWithEngine:self.engine nibName:nil bundle:nil];
-    
     [GeneratedPluginRegistrant registerWithRegistry:flutterViewController];
-    
     [self addBackButton:flutterViewController];
- 
      [flutterViewController setInitialRoute:@"route1"];
     [self presentViewController:flutterViewController animated:YES completion:nil];
     
 }
 
 - (void)handleDocumentButtonAction:(UIButton *)button {
-
     
     NSString * url = @"https://static.moschat.com/mobilePlugin/mobilePlugin_1545200622670.zip";
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
