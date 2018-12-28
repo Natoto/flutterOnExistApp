@@ -1,4 +1,4 @@
-# 插件化方案 multiflutter
+# 插件化方案 demo multiflutter
 
 更新：
 * 11.28 更新了methodchannel的循环引用
