@@ -22,7 +22,7 @@
 
 * 0.9.4版本存在内存泄漏问题，打开了就不支持释放
 * 不支持动态化方案
-* 不支持动态下发脚本代码
+* 不支持动态下发脚本代码（flutter ios热更新）
 
 ### flutter engine构建产物下载地址
 https://github.com/Natoto/fixFlutterEngine 
