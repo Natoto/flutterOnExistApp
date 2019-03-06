@@ -1,6 +1,7 @@
 # 插件化方案 demo multiflutter
 
 更新：
+* 3.4   解决1.2 flutter 内存问题
 * 12.28 更新1.0版本内存问题，产物在 https://github.com/Natoto/fixFlutterEngine 
 * 11.28 更新了methodchannel的循环引用
 * 最新版本0.11.9官方号称解决了循环引用，然而在多插件情况下，还是有泄漏
