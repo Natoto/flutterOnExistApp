@@ -22,9 +22,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    [self createButton:@"加载boundle资源" frame:CGRectMake(80.0, 210.0, 160.0, 40.0) action:@selector(handleBoundleResource )];
+    float Y = 210;
+    [self createButton:@"加载boundle资源" frame:CGRectMake(80.0, Y, 160.0, 40.0) action:@selector(handleBoundleResource )];
   
+    Y += 40.0 + 10;
+    [self createButton:@"autorelease" frame:CGRectMake(80.0, Y, 160.0, 40.0) action:@selector(handleAutoRelase)];
+    
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * path = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"flutter_assets"] ;
     NSLog(@"path: %@",path);
@@ -80,6 +83,28 @@
     
 }
 
+-(void)handleAutoRelase{
+ 
+    FlutterBasicMessageChannel* channel;
+    FlutterEngine * engine;
+    @autoreleasepool {
+        FlutterViewController* flutterViewController =
+        [[FlutterViewController alloc] init];
+        channel = flutterViewController.engine.systemChannel;
+        engine = flutterViewController.engine;
+        NSLog(@"engine111:%@",engine);
+    }
+    NSLog(@"engine222:%@",engine);
+    [channel sendMessage:@"Hello!"];
+ 
+    
+//    NSMutableArray * array;
+//    @autoreleasepool {
+//        array = [NSMutableArray arrayWithObjects:@1,@2, nil];
+//    }
+//    NSLog(@"%@",array);
+    
+}
 
 -(void)addBackButton:(UIViewController *)flutterViewController{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2  * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

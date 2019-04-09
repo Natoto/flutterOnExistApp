@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
@@ -95,6 +95,30 @@ class _MyHomePageState extends State<MyHomePage> {
             new Text(
               '$_counter',
               style: Theme.of(context).textTheme.display1,
+            ),
+            Container(
+              //这是带圆角的图片
+              margin: new EdgeInsets.symmetric(horizontal: 5.0,vertical: 5.0),
+              decoration: new BoxDecoration(
+                image: new DecorationImage(
+                    image: new NetworkImage(
+                      "https://static.moschat.com/useravatar/useravatar_3400012291_1542258415920.jpg",
+                    ),
+                    fit: BoxFit.fill),
+                borderRadius: BorderRadius.all(const Radius.circular(20.0)),
+              ),
+              width: 40.0,
+              height: 40.0,
+            ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15.0),
+              child: CachedNetworkImage(
+                height: 50.0,
+                width: 50.0,
+                placeholder: Image.asset('images/bg_hero_default.png'),
+                fit: BoxFit.cover,
+                imageUrl: "https://static.moschat.com/useravatar/useravatar_3400012291_1542258415920.jpg",
+              ),
             ),
           ],
         ),
