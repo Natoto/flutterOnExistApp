@@ -1,6 +1,7 @@
 # 插件化方案 demo multiflutter
 
 更新：
+* 5.21 1.2 demo更新使用前执行 `pre_ci_build.sh`
 * 3.4   解决1.2 flutter 内存问题
 * 12.28 更新1.0版本内存问题，产物在 https://github.com/Natoto/fixFlutterEngine 
 * 11.28 更新了methodchannel的循环引用
