@@ -85,7 +85,7 @@
 
 -(void)handleAutoRelase{
  
-    FlutterBasicMessageChannel* channel;
+/*    FlutterBasicMessageChannel* channel;
     FlutterEngine * engine;
     @autoreleasepool {
         FlutterViewController* flutterViewController =
@@ -96,7 +96,7 @@
     }
     NSLog(@"engine222:%@",engine);
     [channel sendMessage:@"Hello!"];
- 
+ */
     
 //    NSMutableArray * array;
 //    @autoreleasepool {

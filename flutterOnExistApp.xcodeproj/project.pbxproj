@@ -48,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		9E3E39ECB551B1F85F569466 /* libPods-flutterOnExistApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-flutterOnExistApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1D76FA914C20CCB9F001FE5 /* Pods-flutterOnExistApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flutterOnExistApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-flutterOnExistApp/Pods-flutterOnExistApp.release.xcconfig"; sourceTree = "<group>"; };
+		B429A08C9FF68D3531882279 /* Pods-flutterOnExistApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flutterOnExistApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-flutterOnExistApp/Pods-flutterOnExistApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F8B881B2218B20AB00AB478B /* App.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = App.framework; path = myflutter/.ios/Flutter/App.framework; sourceTree = SOURCE_ROOT; };
 		F8B881B4218B20BB00AB478B /* Flutter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Flutter.framework; path = myflutter/.ios/Flutter/engine/Flutter.framework; sourceTree = SOURCE_ROOT; };
 		F8B881BD218B21B500AB478B /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
@@ -108,6 +110,8 @@
 		9CFC758C628F54CE10516B7A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				B429A08C9FF68D3531882279 /* Pods-flutterOnExistApp.debug.xcconfig */,
+				A1D76FA914C20CCB9F001FE5 /* Pods-flutterOnExistApp.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -332,7 +336,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -rf \"/Users/boo/Documents/engine/src/out/ios_debug_unopt/Flutter.framework\" \"${SRCROOT}/myflutter/.ios/Flutter/engine\"\n";
+			shellScript = "#cp -rf \"/Users/boo/Documents/engine/src/out/ios_debug_unopt/Flutter.framework\" \"${SRCROOT}/myflutter/.ios/Flutter/engine\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
