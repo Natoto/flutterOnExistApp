@@ -9,6 +9,7 @@ dependencies:
   package_info:
   flutter:
     sdk: flutter
+  cached_network_image: ^0.5.1
 
 dev_dependencies:
   flutter_test:
@@ -20,3 +21,5 @@ flutter:
   module:
     androidPackage: com.example.myflutter
     iosBundleIdentifier: com.example.myflutter
+  assets:
+     - images/bg_hero_default.png

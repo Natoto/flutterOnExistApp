@@ -1,3 +1,4 @@
+ 
 # flutterOnExistApp 现有工程中添加flutter
 
 ## 改造官方flutter engine，实现插件化demo，见[multiflutter分支](https://github.com/Natoto/flutterOnExistApp/tree/multiflutter) 
@@ -5,23 +6,34 @@
 ## fltter engine 修复版下载地址 https://github.com/Natoto/fixFlutterEngine 
 
 
-flutter添加到iOS主工程例子
+flutter添加到iOS主工程例子 
+# 插件化方案 demo multiflutter 
 
-0.9.4 有更新
+更新：
+* 5.21 1.2 demo更新使用前执行 `pre_ci_build.sh`
+* 3.4   解决1.2 flutter 内存问题
+* 12.28 更新1.0版本内存问题，产物在 https://github.com/Natoto/fixFlutterEngine 
+* 11.28 更新了methodchannel的循环引用
+* 最新版本0.11.9官方号称解决了循环引用，然而在多插件情况下，还是有泄漏
 
-Flutter目录里面的App.framework和Flutter.framework指向的是  
+---
+流程
 
-Flutter/App.framework  ----->  `myflutter/.ios/Flutter/App.framework`
+1. 在现有iOS工程基础上添加flutter
 
-Flutter/Flutter.framework  ----->  `myflutter/.ios/Flutter/engine/App.framework`
+2. 将编译产物Flutter.framework.zip至于工程Resource目录下
+
+3. 在执行build脚本之后，添加自己的脚本，将Flutter.framework.zip解压出来，并替换掉之前编译的产物Flutter.framework
+
+4. 结束
 
 
-Flutter/flutter_assets  ----->  `myflutter/.ios/Flutter/flutter_assets`
+---
+为什么要替换Flutter.framework,本版本解决了以下问题
 
-另外移除了podfile里面的
-```
-    #flutter_application_path = 'myflutter'
-    #eval(File.read("#{flutter_application_path}/.ios/Flutter/podhelper.rb"))
-```
+* 0.9.4版本存在内存泄漏问题，打开了就不支持释放
+* 不支持动态化方案
+* 不支持动态下发脚本代码（flutter ios热更新）
 
-将`GeneratedPluginRegistrant.h` `GeneratedPluginRegistrant.m` 拷贝到futter目录并引入工程
+### flutter engine构建产物下载地址
+https://github.com/Natoto/fixFlutterEngine 

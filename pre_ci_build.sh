@@ -1,8 +1,10 @@
 
 #!/bin/bash
 
-cd mosflutter
+cd myflutter
 
 flutter packages get
+
+flutter build ios --debug
 
 cd ..
