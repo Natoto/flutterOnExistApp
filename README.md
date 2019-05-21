@@ -5,6 +5,7 @@
 
 ## fltter engine 修复版下载地址 https://github.com/Natoto/fixFlutterEngine 
 
+### qq群聊【flutter移动开发】：217429001
 
 flutter添加到iOS主工程例子 
 # 插件化方案 demo multiflutter 
