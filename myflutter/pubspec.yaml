@@ -9,7 +9,7 @@ dependencies:
   package_info:
   flutter:
     sdk: flutter
-  cached_network_image: ^0.5.1
+  cached_network_image:
 
 dev_dependencies:
   flutter_test:

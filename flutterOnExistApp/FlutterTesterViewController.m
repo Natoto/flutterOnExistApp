@@ -13,6 +13,7 @@
 #import <SSZipArchive/SSZipArchive.h>
 
 //#import <FLEX/FLEX.h>
+
 @interface FlutterTesterViewController ()
 @property (nonatomic, weak) FlutterViewController * ctr;
 @property (nonatomic, weak) FlutterEngine * engine;
@@ -21,7 +22,7 @@
 @implementation FlutterTesterViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+ 
     float Y = 210;
     [self createButton:@"加载boundle资源" frame:CGRectMake(80.0, Y, 160.0, 40.0) action:@selector(handleBoundleResource )];
   
@@ -35,31 +36,7 @@
 }
 
 -(void)handleNetWorkResource:(UIButton *)button{
-
-  /*  //https://file.io/L6Ogcg
-    button.enabled = NO;
-    __weak __typeof(self)weakSelf = self;
-    void (^unzipCompleteBlock)(NSString * tempZipDir) = ^(NSString *tempZipDir) {
-           NSString * unZipDir  = [tempZipDir stringByAppendingPathComponent:@"flutter_assets"];
-              NSURL * url = [NSURL URLWithString:unZipDir ];
-            FlutterDartProject * dart = [[FlutterDartProject alloc] initWithFlutterAssets:url dartMain:nil packages:nil];
-            FlutterViewController* flutterViewController = [[FlutterViewController alloc] initWithProject:dart nibName:nil bundle:nil];
-            [GeneratedPluginRegistrant registerWithRegistry:flutterViewController];
-        
-            [weakSelf addBackButton:flutterViewController];
  
-             [flutterViewController setInitialRoute:@"route1"];
-            [weakSelf presentViewController:flutterViewController animated:YES completion:nil];
-        };
-    
-    [self get_remote_flutterassets:@"http://phe7wo0ui.bkt.clouddn.com/flutter_assets.zip" progress:^(float progress) {
-        button.enabled = NO;
-        [button setTitle:[NSString stringWithFormat:@"%.2f%%",100*progress] forState:UIControlStateDisabled];
-    } complete:^(NSString *localpath) {
-        button.enabled = YES;
-        unzipCompleteBlock(localpath);
-    }];
-  */
 }
 
 /** 
@@ -67,25 +44,21 @@
 */
 - (void)handleBoundleResource {
     
-  
     FlutterDartProject * dart = [[FlutterDartProject alloc] init];
-//    if (!self.engine) {
-        FlutterEngine * engine = [[FlutterEngine alloc] initWithName:@"ios.dart.flutter"
-                                                             project:dart];
-        [engine runWithEntrypoint:nil];
-        self.engine = engine;
-   // }
-    FlutterViewController* flutterViewController = [[FlutterViewController alloc] initWithEngine:self.engine nibName:nil bundle:nil];
+    FlutterEngine * engine = [[FlutterEngine alloc] initWithName:@"ios.dart.flutter"
+                                                         project:dart];
+    [engine runWithEntrypoint:nil];
+    FlutterViewController* flutterViewController = [[FlutterViewController alloc] initWithEngine:engine nibName:nil bundle:nil];
     [GeneratedPluginRegistrant registerWithRegistry:flutterViewController];
     [self addBackButton:flutterViewController];
      [flutterViewController setInitialRoute:@"route1"];
     [self presentViewController:flutterViewController animated:YES completion:nil];
-    
+    self.engine = engine;
 }
 
 -(void)handleAutoRelase{
  
-/*    FlutterBasicMessageChannel* channel;
+     FlutterBasicMessageChannel* channel;
     FlutterEngine * engine;
     @autoreleasepool {
         FlutterViewController* flutterViewController =
@@ -96,14 +69,7 @@
     }
     NSLog(@"engine222:%@",engine);
     [channel sendMessage:@"Hello!"];
- */
-    
-//    NSMutableArray * array;
-//    @autoreleasepool {
-//        array = [NSMutableArray arrayWithObjects:@1,@2, nil];
-//    }
-//    NSLog(@"%@",array);
-    
+    [channel setMessageHandler:^(id  _Nullable message, FlutterReply  _Nonnull callback) { }];
 }
 
 -(void)addBackButton:(UIViewController *)flutterViewController{
@@ -123,11 +89,7 @@
     __weak __typeof(self)weakSelf = self;
     [self.ctr dismissViewControllerAnimated:YES completion:^{
         
-//    [self.ctr dismissViewControllerAnimated:YES completion:^{
-        weakSelf.engine = nil;
-//        if ([weakSelf.ctr canPerformAction:@selector(clearChannels) withSender:nil]) {
-  //              [weakSelf.ctr performSelector:@selector(clearChannels) withObject:nil afterDelay:0];
-    //    }
+        //[weakSelf.engine destroyContext];
     }];
 
 }

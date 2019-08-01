@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: CachedNetworkImage(
                 height: 50.0,
                 width: 50.0,
-                placeholder: Image.asset('images/bg_hero_default.png'),
+//                placeholder: Image.asset('images/bg_hero_default.png'),
                 fit: BoxFit.cover,
                 imageUrl: "https://static.moschat.com/useravatar/useravatar_3400012291_1542258415920.jpg",
               ),
