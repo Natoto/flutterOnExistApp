@@ -1,3 +1,0 @@
-#include "../Flutter/Flutter.xcconfig"
-#include "../Pods/Target Support Files/Pods-flutterOnExistApp/Pods-flutterOnExistApp.debug.xcconfig"
-FLUTTER_BUILD_MODE=debug
