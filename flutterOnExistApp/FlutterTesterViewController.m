@@ -57,19 +57,27 @@
 }
 
 -(void)handleAutoRelase{
- 
+ /*
      FlutterBasicMessageChannel* channel;
-    FlutterEngine * engine;
+     FlutterEngine * engine; 
+   __weak  FlutterViewController* vc ;
+    NSArray * array;
     @autoreleasepool {
-        FlutterViewController* flutterViewController =
-        [[FlutterViewController alloc] init];
-        channel = flutterViewController.engine.systemChannel;
-        engine = flutterViewController.engine;
+        NSMutableArray * ary = [NSMutableArray arrayWithArray:@[@1,@2,@3]];
+        array = ary; 
+        FlutterViewController* flutterViewController = [FlutterViewController new];
+        vc = flutterViewController;
+        engine = flutterViewController.engine; 
         NSLog(@"engine111:%@",engine);
+        channel = flutterViewController.engine.systemChannel;         
     }
     NSLog(@"engine222:%@",engine);
+    NSLog(@"array:%@",array);
+    NSLog(@"vc:%@",vc);
     [channel sendMessage:@"Hello!"];
     [channel setMessageHandler:^(id  _Nullable message, FlutterReply  _Nonnull callback) { }];
+    
+    */
 }
 
 -(void)addBackButton:(UIViewController *)flutterViewController{
