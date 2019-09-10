@@ -18,6 +18,10 @@
 		780C15A62322226100F2E0F2 /* Flutter.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 780C15A52322226100F2E0F2 /* Flutter.xcconfig */; };
 		780C15AE2322295400F2E0F2 /* App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 780C15AC2322294000F2E0F2 /* App.framework */; };
 		780C15AF2322295400F2E0F2 /* App.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 780C15AC2322294000F2E0F2 /* App.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		78C03ADC2327B01C006A524D /* Flutter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C03ADB2327B01C006A524D /* Flutter.framework */; };
+		78C03AE02327B048006A524D /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C03ADF2327B048006A524D /* GeneratedPluginRegistrant.m */; };
+		78C03AE12327B05B006A524D /* Flutter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C03ADB2327B01C006A524D /* Flutter.framework */; };
+		78C03AE22327B05B006A524D /* Flutter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78C03ADB2327B01C006A524D /* Flutter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A916AAC0CB8E8B50966E7363 /* libPods-Test2flutter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA91AEEA883C702ED269BF26 /* libPods-Test2flutter.a */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +33,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				780C15AF2322295400F2E0F2 /* App.framework in Embed Frameworks */,
+				78C03AE22327B05B006A524D /* Flutter.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,6 +57,9 @@
 		780C15A22322201500F2E0F2 /* fluter_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = fluter_Release.xcconfig; sourceTree = "<group>"; };
 		780C15A52322226100F2E0F2 /* Flutter.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Flutter.xcconfig; sourceTree = "<group>"; };
 		780C15AC2322294000F2E0F2 /* App.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = App.framework; path = myflutter/.ios/Flutter/App.framework; sourceTree = SOURCE_ROOT; };
+		78C03ADB2327B01C006A524D /* Flutter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Flutter.framework; path = myflutter/.ios/Flutter/engine/Flutter.framework; sourceTree = SOURCE_ROOT; };
+		78C03ADE2327B048006A524D /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
+		78C03ADF2327B048006A524D /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		EA91AEEA883C702ED269BF26 /* libPods-Test2flutter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Test2flutter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -61,7 +69,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				780C15AE2322295400F2E0F2 /* App.framework in Frameworks */,
+				78C03ADC2327B01C006A524D /* Flutter.framework in Frameworks */,
 				A916AAC0CB8E8B50966E7363 /* libPods-Test2flutter.a in Frameworks */,
+				78C03AE12327B05B006A524D /* Flutter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,12 +125,24 @@
 		780C15A02322201500F2E0F2 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				78C03ADD2327B048006A524D /* Classes */,
+				78C03ADB2327B01C006A524D /* Flutter.framework */,
 				780C15A52322226100F2E0F2 /* Flutter.xcconfig */,
 				780C15AC2322294000F2E0F2 /* App.framework */,
 				780C15A12322201500F2E0F2 /* fluter_Debug.xcconfig */,
 				780C15A22322201500F2E0F2 /* fluter_Release.xcconfig */,
 			);
 			path = Config;
+			sourceTree = SOURCE_ROOT;
+		};
+		78C03ADD2327B048006A524D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				78C03ADE2327B048006A524D /* GeneratedPluginRegistrant.h */,
+				78C03ADF2327B048006A524D /* GeneratedPluginRegistrant.m */,
+			);
+			name = Classes;
+			path = myflutter/.ios/Flutter/FlutterPluginRegistrant/Classes;
 			sourceTree = SOURCE_ROOT;
 		};
 		A8E2B365DE2B006C396A2C67 /* Frameworks */ = {
@@ -142,7 +164,6 @@
 				780C1561231E8DA000F2E0F2 /* Sources */,
 				780C1562231E8DA000F2E0F2 /* Frameworks */,
 				780C1563231E8DA000F2E0F2 /* Resources */,
-				50CA4F3F5DE984940600C04E /* [CP] Embed Pods Frameworks */,
 				780C15B02322295400F2E0F2 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -203,28 +224,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		50CA4F3F5DE984940600C04E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Test2flutter/Pods-Test2flutter-frameworks.sh",
-				"${PODS_ROOT}/../myflutter/.ios/Flutter/engine/Flutter.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Flutter.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Test2flutter/Pods-Test2flutter-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		595D747B920DF1AFAC28FE07 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -257,6 +256,7 @@
 				780C156D231E8DA000F2E0F2 /* ViewController.m in Sources */,
 				780C1578231E8DA400F2E0F2 /* main.m in Sources */,
 				780C156A231E8DA000F2E0F2 /* AppDelegate.m in Sources */,
+				78C03AE02327B048006A524D /* GeneratedPluginRegistrant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +405,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Config",
 					"$(PROJECT_DIR)/myflutter/.ios/Flutter",
+					"$(PROJECT_DIR)/myflutter/.ios/Flutter/engine",
 				);
 				INFOPLIST_FILE = Test2flutter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -428,6 +429,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Config",
 					"$(PROJECT_DIR)/myflutter/.ios/Flutter",
+					"$(PROJECT_DIR)/myflutter/.ios/Flutter/engine",
 				);
 				INFOPLIST_FILE = Test2flutter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

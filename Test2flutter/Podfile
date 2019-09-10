@@ -2,8 +2,8 @@ platform :ios, '9.0'
 
 target 'Test2flutter' do
 
-    flutter_application_path = 'myflutter'
-    eval(File.read("#{flutter_application_path}/.ios/Flutter/podhelper.rb"))
+#    flutter_application_path = 'myflutter'
+#    eval(File.read("#{flutter_application_path}/.ios/Flutter/podhelper.rb"))
     
 
 end
